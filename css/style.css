@@ -74,36 +74,37 @@ h3 {
     text-align: center;
     font-family: var(--fuentePrincipal);
     font-weight: 700;
-    background: linear-gradient(to right, var(--secundarioOscuro) 0%, var(--secundario) 100%);
-    color: transparent;
+    -webkit-background-clip: text; 
+    background-image: linear-gradient(165deg, var(--secundarioOscuro), var(--secundario)); 
+    color: rgb(0,0,0,0);
     background-clip: text;
-    font-size: 2.5rem;
+    font-size: 2rem;
 }
 .tagline {
-    /* font-family: var(--fuentePrincipal); */
     font-weight: 900;
     color: var(--grisClaro);
-    font-size: 2rem;
+    font-size: 2.5rem;
     text-align: center;
+    margin: 2rem 0;
 }
 
 /* SESION  */
 .infoadmin {
     font-weight: 900;
-    background: linear-gradient(to right, var(--secundarioOscuro) 0%, var(--secundario) 100%);
-    color: transparent;
-    background-clip: text;
+    -webkit-background-clip: text; 
+    background-image: linear-gradient(165deg, var(--secundarioOscuro), var(--secundario)); 
+    color: rgb(0,0,0,0);
     text-align: center;
     font-size: 7rem;
     margin-top: 4rem;
 }
 @media (min-width: 768px){
     .infoadmin {
-        font-size: 10rem;
-        margin-top: 10rem;
+        font-size: 9rem;
+        margin-top: 6rem;
     }
     .tagline {
-        font-size: 3rem;
+        font-size: 2.5rem;
     }
 }
 .sesion__iniciar {
@@ -111,7 +112,7 @@ h3 {
 }
 
 .formulario {
-    margin-top: 4rem;
+    margin-top: 3rem;
     border-top: 4px solid var(--secundarioOscuro);
     background-color: var(--primarioOscuro);
     padding: 1rem;
@@ -119,13 +120,18 @@ h3 {
 }
 @media (min-width: 768px){
     .formulario{
-        padding: 3rem;
+        padding: 2rem;
     }
 }
 .campo {
     display: flex;
     align-items: center;
     margin-bottom: 2rem;
+}
+.campo_crear {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
 }
 .campo__label {
     flex: 0 0 13rem;
@@ -141,7 +147,7 @@ h3 {
     border-radius: 6px;
 }
 .acciones {
-    margin-top: 4rem;
+    margin-top: 3rem;
 }
 @media (min-width: 768px){
     .acciones {
@@ -150,8 +156,9 @@ h3 {
     }
 }
 .acciones__enlace {
-    background: linear-gradient(to right, var(--secundarioOscuro) 0%, var(--secundario) 100%);
-    color: transparent;
+    -webkit-background-clip: text; 
+    background-image: linear-gradient(165deg, var(--secundarioOscuro), var(--secundario)); 
+    color: rgb(0,0,0,0);
     background-clip: text;
     display: block;
     text-align: center;
@@ -175,7 +182,7 @@ h3 {
     background-color: var(--secundarioOscuro);
     color: var(--blanco);
     font-weight: 700;
-    padding: 1.7rem;
+    padding: 1.7rem 4rem;
     cursor: pointer;
     transition: background-color .3s ease, color .3s ease;
     width: 100%;
@@ -183,7 +190,7 @@ h3 {
 @media (min-width: 768px){
     .boton{
         width:auto;
-        margin: 0 0 0 78.3%;
+        margin: 0 0 0 71.8%;
     }
 }
 .boton:hover {
