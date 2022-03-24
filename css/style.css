@@ -1,7 +1,9 @@
 :root {
     --primario: #2C2C47;
     --primarioOscuro: #1B1D35;
-    --secundario: rgb(245, 195, 88);
+    --primarioClaro: #605c76;
+    --secundario: #dbac45;
+    --secundarioClaro: rgb(245, 195, 88);
     --secundarioOscuro: #B8711B;
     --blanco: rgb(230, 227, 227);
     --negro: #000;
@@ -9,6 +11,7 @@
     --verde: #679863;
     --verdeOscuro: #4c7a47;
     --fuentePrincipal: 'Inter', sans-serif;
+    --degradado: linear-gradient(165deg, var(--secundarioOscuro), var(--secundarioClaro));
 }
 
 *, *:before, *:after {
@@ -74,10 +77,8 @@ h3 {
     text-align: center;
     font-family: var(--fuentePrincipal);
     font-weight: 700;
-    -webkit-background-clip: text; 
-    background-image: linear-gradient(165deg, var(--secundarioOscuro), var(--secundario)); 
-    color: rgb(0,0,0,0);
-    background-clip: text;
+
+    /* background-clip: text; */
     font-size: 2rem;
 }
 .tagline {
@@ -91,9 +92,6 @@ h3 {
 /* SESION  */
 .infoadmin {
     font-weight: 900;
-    -webkit-background-clip: text; 
-    background-image: linear-gradient(165deg, var(--secundarioOscuro), var(--secundario)); 
-    color: rgb(0,0,0,0);
     text-align: center;
     font-size: 7rem;
     margin-top: 4rem;
@@ -156,14 +154,20 @@ h3 {
     }
 }
 .acciones__enlace {
-    -webkit-background-clip: text; 
-    background-image: linear-gradient(165deg, var(--secundarioOscuro), var(--secundario)); 
-    color: rgb(0,0,0,0);
-    background-clip: text;
+    
+    /* background-clip: text; */
     display: block;
     text-align: center;
     margin-bottom: 2rem;
     transition: color .3s ease;
+}
+.sidebar__infoadmin,
+.descripcion_pagina,
+.infoadmin,
+.acciones__enlace {
+    -webkit-background-clip: text; 
+    background-image: var(--degradado); 
+    color: rgb(0,0,0,0);
 }
 .acciones__enlace:hover{
     /* background-color: var(--secundario); */
@@ -197,4 +201,120 @@ h3 {
     background-color: var(--secundario);
     color: var(--primario);
 }
+.error {
+    color: var(--secundario);
+    padding: .5rem 2rem 0rem 2rem;
+    margin-bottom: .2rem;
+}
 
+/* MENSAJE */
+.mensaje {
+    text-align: center;
+}
+
+/* DASHBOAR GERENCIAL */
+.dashboard {
+
+}
+@media (min-width: 768px){
+    .dashboard {
+        display: flex;
+        height: 100vh;
+    }
+}
+.sidebar {
+    background-color: var(--primarioOscuro);
+    padding-top: 1.5rem;
+    padding-bottom: .5rem;
+}
+.sidebar__infoadmin {
+    font-weight: 900;
+    text-align: center;
+    font-size: 3.5rem;
+    margin: 0rem auto;
+}
+.sidebar__nav {
+    margin-top: 1rem;
+}
+.sidebar__nav--enlace {
+    color: var(--blanco);
+    display: block;
+    font-size: 1.7rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: .4rem;
+    text-align: center;
+    border-radius: .5rem;
+}
+.sidebar__nav--enlace:hover{
+    background-image: var(--degradado); 
+}
+@media (min-width: 768px){
+    .sidebar {
+        padding: 2rem;
+    }
+    .sidebar__infoadmin {
+        font-size: 5rem;
+    }
+    .sidebar__nav {
+        margin-top: 7rem;
+    }
+    .sidebar__nav--enlace {
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+        padding: 1rem;
+        text-align: left;
+    }
+}
+.principal {
+    flex: 1;
+}
+.barra {
+    background-color: var(--primarioClaro);
+    padding: 1.5rem 2rem;
+    box-shadow: 1px 12px 9px -13px var(--negro);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.barra__texto {
+    margin: 0 auto 1rem auto;
+    
+}   
+.barra__texto--username {
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--secundario);
+}   
+.barra__boton {
+    text-decoration: none;
+    border: none;
+    border-radius: 6px;
+    background-color: var(--primarioOscuro);
+    color: var(--secundario);
+    font-weight: 700;
+    padding: 1.5rem 3rem;
+    cursor: pointer;
+    transition: background-color .3s ease, color .3s ease;
+    width: 100%;
+    text-align: center;
+}
+
+.barra__boton:hover {
+    background-color: var(--secundarioOscuro);
+    color: var(--blanco);
+}
+@media (min-width: 768px){
+    .barra {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .barra__texto {
+        margin: 0;
+    }
+    .barra__boton {
+        width: 21rem;
+    }
+}

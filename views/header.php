@@ -9,10 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet"> 
     <link rel="stylesheet" href="<?php echo RUTA; ?>css/style.css">   
-    <title>Visita La Paz-ADMIN</title>
+    <title>InfoAdmin | <?php echo $titulo; ?></title>
 </head>
 <body>
-    <div class="contenedor">
-        <a href="index.php">
-            <h1 class="infoadmin">InfoAdmin</h1>
-        </a>
+    

@@ -8,6 +8,13 @@ function conexion($bd_config){
     }
 } 
 
+function verificar_username($usuario, $conexion){
+    $sentencia = $conexion->prepare("SELECT * FROM usuarios WHERE username = :usuario LIMIT 1");
+    $sentencia->execute(array(':usuario' => $usuario));
+    $resultado = $sentencia->fetch();
+    return $resultado;
+}
+
 // // LIMPIAR LOS DATOS PARA EVITAR INYECTAR CODIGO
 // function limpiarDatos($datos) {
 //     $datos = trim($datos);
