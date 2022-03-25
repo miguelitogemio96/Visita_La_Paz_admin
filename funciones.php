@@ -15,6 +15,14 @@ function verificar_username($usuario, $conexion){
     return $resultado;
 }
 
+function insertar_usuario($conexion, $usuario, $contraseña) {
+    $sentencia = $conexion->prepare("INSERT INTO usuarios (id_usuario, id_persona, username, password, correo, tipo_usuario, estado) VALUES (NULL, 10, :usuario, :pass, '@hotmail.com', 'g', 0)");
+    $sentencia->execute(array(':usuario' => $usuario, ':pass' => $contraseña));
+
+}
+
+
+
 // // LIMPIAR LOS DATOS PARA EVITAR INYECTAR CODIGO
 // function limpiarDatos($datos) {
 //     $datos = trim($datos);

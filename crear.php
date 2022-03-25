@@ -27,7 +27,17 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         // VERIFICAR SI EL USUARIO YA EXISTE
         if (verificar_username($usuario, $conexion) != false){
             $errores .= '<li>El nombre de usuario ya existe. </li>';
-        }        
+        }
+        
+        if ($contraseña != $contraseña2) {
+            $errores .= '<li>Las contraseñas no son iguales.</li>';
+        }else{
+            $contraseña = hash('sha512', $contraseña);
+        }
+    }
+    if ($errores == '') {
+        insertar_usuario($conexion, $usuario, $contraseña);
+        header('Location:mensaje.php');
     }
 
     // echo "$usuario  .$contraseña";

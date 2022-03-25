@@ -10,7 +10,11 @@ if (!$conexion) {
     header('Location: error.php');
 }
 
-$mensaje = $_POST['mensaje'];
+if (isset($_POST['mensaje'])){
+    $mensaje = $_POST['mensaje'];
+}else{
+    $mensaje = 'Estamos verificando tus datos, Pronto tu cuenta sera habilitada!';
+}
 // echo $mensaje;
 
 // DAR TITULO A LA PAGINA 
