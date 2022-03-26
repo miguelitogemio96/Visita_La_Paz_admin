@@ -1,6 +1,6 @@
 <?php 
 
-
+session_start();
 require 'admin/config.php';
 require 'funciones.php';
 
@@ -10,12 +10,14 @@ if (!$conexion) {
     header('Location: error.php');
 }
 
+verificar_sesion();
+
 if (isset($_POST['mensaje'])){
     $mensaje = $_POST['mensaje'];
 }else{
     $mensaje = 'Estamos verificando tus datos, Pronto tu cuenta sera habilitada!';
 }
-// echo $mensaje;
+// echo $_SESSION['usuario'];
 
 // DAR TITULO A LA PAGINA 
 if (isset($_GET['t'])){$titulo=$_GET['t'];}else{$titulo="Mensaje";}

@@ -1,4 +1,38 @@
 <?php
+
+// VERIFICAR SI EXISTE UNA SESION, CASO CONTRARIO ENVIAR A LOGIN
+function verificar_sesion(){
+    if (!isset($_SESSION['usuario'])){
+        header("Location:login.php");
+    }
+}
+
+// VERIFICAR SI EXTISTE UNS SESION, SI ES ASI, ENVIAR AL INDEX 
+function verificar_sesion_index(){
+    if (isset($_SESSION['usuario'])){
+        header("Location:index.php");
+    }
+}
+
+// VERIFICAR EL USUARIO SEA ADMIN Y TENGA CUENTA HABILITADA
+function verificar_usuario_admin($conexion){
+    $usuario = $_SESSION['usuario'];
+    $datos_usuario = verificar_username($usuario, $conexion);
+    if (!($datos_usuario['estado'] == 1 && $datos_usuario['tipo_usuario'] == 'a')){
+        header('Location:index.php');        
+    }
+}
+
+// VERIFICAR EL USUARIO SEA GERENCIAL Y TENGA CUENTA HABILITADA
+function verificar_usuario_gerencial($conexion){
+    $usuario = $_SESSION['usuario'];
+    $datos_usuario = verificar_username($usuario, $conexion);
+    if (!($datos_usuario['estado'] == 1 && $datos_usuario['tipo_usuario'] == 'g')){
+        header('Location:index.php');        
+    }
+}
+
+
 function conexion($bd_config){
     try {
         $conexion = new PDO('mysql:host=localhost;dbname='.$bd_config['basedatos'], $bd_config['usuario'], $bd_config['pass']);
@@ -8,6 +42,7 @@ function conexion($bd_config){
     }
 } 
 
+
 function verificar_username($usuario, $conexion){
     $sentencia = $conexion->prepare("SELECT * FROM usuarios WHERE username = :usuario LIMIT 1");
     $sentencia->execute(array(':usuario' => $usuario));
@@ -15,11 +50,19 @@ function verificar_username($usuario, $conexion){
     return $resultado;
 }
 
+function verificar_username_pass($usuario, $password, $conexion){
+    $sentencia = $conexion->prepare("SELECT * FROM usuarios WHERE username = :usuario AND password = :password LIMIT 1");
+    $sentencia->execute(array(':usuario' => $usuario, ':password' => $password));
+    $resultado = $sentencia->fetch();
+    return $resultado;
+}
+
 function insertar_usuario($conexion, $usuario, $contraseña) {
     $sentencia = $conexion->prepare("INSERT INTO usuarios (id_usuario, id_persona, username, password, correo, tipo_usuario, estado) VALUES (NULL, 10, :usuario, :pass, '@hotmail.com', 'g', 0)");
     $sentencia->execute(array(':usuario' => $usuario, ':pass' => $contraseña));
-
 }
+
+
 
 
 

@@ -4,7 +4,7 @@ require 'admin/config.php';
 require 'funciones.php';
 
 if (isset($_SESSION['usuario'])){
-    header('Location:index.php');
+    header("Location:index.php");
 }
 
 // VERIFICAR LA CONEXION A LA BASE DE DATOS

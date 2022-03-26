@@ -17,7 +17,7 @@
         <div class="principal">
             <div class="barra">
                 <p class="barra__texto">Hola: <span class="barra__texto--username"><?php echo 'Miguelito96';?></span></p>
-                <a href="#" class="barra__boton">Cerrar Sesion</a>
+                <a href="cerrar.php" class="barra__boton">Cerrar Sesion</a>
             </div>
 
         </div>

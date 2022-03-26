@@ -9,7 +9,7 @@
             <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" class="formulario" method="POST">
                 <div class="campo">
                     <label class="campo__label" for="usuario">Usuario</label>
-                    <input class="campo__input" id="usuario" type="email" placeholder="Tu Username o Email" name="usuario">
+                    <input class="campo__input" id="usuario" type="text" placeholder="Tu Username o Email" name="usuario">
                 </div>
                 <div class="campo">
                     <label class="campo__label" for="contraseña">Contraseña</label>
@@ -17,6 +17,13 @@
 
                 </div>
                 <input type="submit" class="boton" value="Iniciar Sesion">
+                <?php if (!empty($errores)): ?>
+                    <div >
+                        <ul class="error">
+                            <?php echo $errores; ?>
+                        </ul>
+                    </div>
+                <?php endif; ?>
             </form>
             <div class="acciones">
                 <a class="acciones__enlace" href="crear.php">Aun no tienes una cuenta? obtener una</a>

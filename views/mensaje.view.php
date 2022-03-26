@@ -1,6 +1,6 @@
 <?php require 'header.php'; ?>
     <div class="contenedor">
-        <a href="index.php">
+        <a href="cerrar.php">
             <h1 class="infoadmin">InfoAdmin</h1>
         </a>
         <p class="tagline">Crea y Administra tu Negocio</p>
@@ -10,7 +10,7 @@
                 <p class="mensaje"><?php echo $mensaje;?></p>
             </form>
             <div class="acciones">
-                <a class="acciones__enlace" href="login.php">Volver al Login</a>
+                <a class="acciones__enlace" href="cerrar.php">Volver al Login</a>
             </div>
         </div>
         <!-- .contenedor-sm  -->
