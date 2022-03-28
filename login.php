@@ -13,7 +13,9 @@ if (!$conexion) {header('Location: error.php');}
 
 // VERIFICAMOS LOS DATOS DEL LOGIN 
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
-    $usuario = strtolower($_POST['usuario']);
+    // $usuario = filter_var(strtolower($_POST['usuario']), FILTER_SANITIZE_STRING);
+    $usuario = filter_string_polyfill($_POST['usuario']);
+
     $contraseña = $_POST['contraseña'];
 
     // VERIFICAR CAMPOS VACIOS
@@ -38,7 +40,7 @@ if (isset($_GET['t'])){$titulo=$_GET['t'];}else{$titulo="Iniciar Sesion";}
 require 'views/login.view.php';
 ?>
 <!-- admin:
-miguelito96 
+miguelito 
 123456
 
 gerencial habilitado:

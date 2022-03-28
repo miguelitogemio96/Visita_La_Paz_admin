@@ -6,10 +6,11 @@
         <p class="tagline">Crea y Administra tu Negocio</p>
         <div class="contenedor-sm">
             <p class="descripcion_pagina">Iniciar Sesion</p>
+            <hr class="border_login">
             <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" class="formulario" method="POST">
                 <div class="campo">
                     <label class="campo__label" for="usuario">Usuario</label>
-                    <input class="campo__input" id="usuario" type="text" placeholder="Tu Username o Email" name="usuario">
+                    <input class="campo__input" id="usuario" type="text" placeholder="Tu Username" name="usuario">
                 </div>
                 <div class="campo">
                     <label class="campo__label" for="contraseña">Contraseña</label>
