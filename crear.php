@@ -32,7 +32,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         if ($contraseña != $contraseña2) {
             $errores .= '<li>Las contraseñas no son iguales.</li>';
         }else{
-            $contraseña = hash('sha512', $contraseña);
+            // $contraseña = hash('sha512', $contraseña);
         }
     }
     if ($errores == '') {
@@ -45,8 +45,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
 
 // DAR TITULO A LA PAGINA 
-if (isset($_GET['t'])){$titulo=$_GET['t'];}else{$titulo="Crear Cuenta";}
-
+$titulo = 'Crear Usuario';
 
 
 

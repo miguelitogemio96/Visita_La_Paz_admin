@@ -20,8 +20,7 @@ if (isset($_POST['mensaje'])){
 // echo $_SESSION['usuario'];
 
 // DAR TITULO A LA PAGINA 
-if (isset($_GET['t'])){$titulo=$_GET['t'];}else{$titulo="Mensaje";}
-
+$titulo = 'Mensaje';
 
 require 'views/mensaje.view.php';
 ?>

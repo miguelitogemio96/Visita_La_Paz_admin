@@ -16,8 +16,7 @@ if (!$conexion) {    header('Location: error.php');}
 verificar_usuario_admin($conexion);
 
 // DAR TITULO A LA PAGINA 
-if (isset($_GET['t'])){$titulo=$_GET['t'];}else{$titulo="Inicio";}
-
+$titulo = 'Inicio Admin';
 
 require 'views/admin.view.php';
 ?>

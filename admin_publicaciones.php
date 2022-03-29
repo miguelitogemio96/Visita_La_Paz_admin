@@ -9,15 +9,15 @@ verificar_sesion();
 
 // VERIFICAR LA CONEXION A LA BASE DE DATOS
 $conexion = conexion($bd_config);
-if (!$conexion) {
-    header('Location: error.php');
-}
+if (!$conexion) {    header('Location: error.php');}
 
-// EL USUARIO ESTA HABILITADO Y ES GERENCIAL?
-verificar_usuario_gerencial($conexion);
+// EL USUARIO ESTA HABILITADO Y ES ADMIN?
+verificar_usuario_admin($conexion);
+
+
 
 // DAR TITULO A LA PAGINA 
-$titulo = 'Inicio Gerencial';
+$titulo = 'Administrar POSTS';
 
-require 'views/gerencial.view.php';
+require 'views/admin_publicaciones.view.php';
 ?>

@@ -35,7 +35,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 }
 
 // DAR TITULO A LA PAGINA 
-if (isset($_GET['t'])){$titulo=$_GET['t'];}else{$titulo="Iniciar Sesion";}
+$titulo = 'Iniciar Sesion';
 
 require 'views/login.view.php';
 ?>

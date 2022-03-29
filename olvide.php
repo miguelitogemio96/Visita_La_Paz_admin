@@ -11,9 +11,7 @@ if (!$conexion) {
 }
 
 // DAR TITULO A LA PAGINA 
-if (isset($_GET['t'])){$titulo=$_GET['t'];}else{$titulo="Olvide Contraseña";}
-
-
+$titulo = 'Recuperar Password';
 
 require 'views/olvide.view.php';
 ?>

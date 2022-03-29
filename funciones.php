@@ -68,6 +68,27 @@ function filter_string_polyfill(string $string): string
     return str_replace(["'", '"'], ['&#39;', '&#34;'], $str);
 }
 
+function obtener_cuentas_gerenciales($conexion) {
+    $sentencia = $conexion->prepare("SELECT SQL_CALC_FOUND_ROWS id_usuario, username, correo, estado FROM usuarios WHERE tipo_usuario != 'a' AND tipo_usuario = 'g' ORDER BY estado");
+    $sentencia->execute();
+    return $sentencia->fetchAll();  
+}
+
+function eliminar_cuentas($id_usuario, $conexion){
+    $sentencia = $conexion->prepare("DELETE FROM usuarios WHERE id_usuario = :usuario");
+    $sentencia->execute(array(':usuario' => $id_usuario));
+}
+
+function cambiar_estado_cuenta($id_usuario, $conexion){
+    $sentencia = $conexion->prepare("SELECT * FROM usuarios WHERE id_usuario = :usuario LIMIT 1");
+    $sentencia->execute(array(':usuario' => $id_usuario));
+    $resultado = $sentencia->fetch();
+    $estado = $resultado['estado'];
+    $nuevo_estado = ($estado == '0') ? '1' : '0';
+    $sentencia2 = $conexion->prepare("UPDATE usuarios SET estado = $nuevo_estado WHERE id_usuario= :usuario");
+    $sentencia2->execute(array(':usuario' => $resultado['id_usuario']));
+}
+
 
 
 // // LIMPIAR LOS DATOS PARA EVITAR INYECTAR CODIGO
