@@ -89,85 +89,74 @@ function cambiar_estado_cuenta($id_usuario, $conexion){
     $sentencia2->execute(array(':usuario' => $resultado['id_usuario']));
 }
 
+function obtener_negocios($conexion) {
+    $sentencia = $conexion->prepare("SELECT SQL_CALC_FOUND_ROWS * FROM negocios ORDER BY nombre");
+    $sentencia->execute();
+    return $sentencia->fetchAll();  
+}
+
+function eliminar_negocio($id_negocio, $conexion){
+    $sentencia = $conexion->prepare("DELETE FROM negocios WHERE id_negocio = :negocio");
+    $sentencia->execute(array(':negocio' => $id_negocio));
+}
+
+function cambiar_estado_negocio($id_negocio, $conexion){
+    $sentencia = $conexion->prepare("SELECT * FROM negocios WHERE id_negocio = :negocio LIMIT 1");
+    $sentencia->execute(array(':negocio' => $id_negocio));
+    $resultado = $sentencia->fetch();
+    $estado = $resultado['estado'];
+    $nuevo_estado = ($estado == '0') ? '1' : '0';
+    $sentencia2 = $conexion->prepare("UPDATE negocios SET estado = $nuevo_estado WHERE id_negocio= :negocio");
+    $sentencia2->execute(array(':negocio' => $resultado['id_negocio']));
+}
 
 
-// // LIMPIAR LOS DATOS PARA EVITAR INYECTAR CODIGO
-// function limpiarDatos($datos) {
-//     $datos = trim($datos);
-//     $datos = stripslashes($datos);
-//     $datos = htmlspecialchars($datos);
-//     return $datos;
-// }
 
-// // PAGINACION
-// function pagina_actual(){
-//     return isset($_GET['p']) ? (int)$_GET['p'] : 1;
-// }
+function obtener_publicaciones($conexion) {
+    $sentencia = $conexion->prepare("SELECT SQL_CALC_FOUND_ROWS * FROM publicaciones ORDER BY titulo");
+    $sentencia->execute();
+    return $sentencia->fetchAll();  
+}
 
-// // CALCULAR LOS POST-POR PAGINA
-// function inicio($post_por_pagina){
-//     $inicio = (pagina_actual() > 1) ? pagina_actual() * $post_por_pagina - $post_por_pagina : 0;
-//     return $inicio;
-// }
-// // OBTENER LOS PRODUCTOS
-// function obtener_post_productos($post_por_pagina, $conexion){
-//     $inicio = inicio($post_por_pagina);
-//     $sentencia = $conexion->prepare("SELECT SQL_CALC_FOUND_ROWS * FROM productos_servicios WHERE tipo = 'p' LIMIT $inicio, $post_por_pagina");
-//     $sentencia->execute();
-//     return $sentencia->fetchAll();  
-// }
-// // OBTENER LOS SERVICIOS
-// function obtener_post_servicios($post_por_pagina, $conexion){
-//     $inicio = inicio($post_por_pagina);
-//     $sentencia = $conexion->prepare("SELECT SQL_CALC_FOUND_ROWS * FROM productos_servicios WHERE tipo = 's' LIMIT $inicio, $post_por_pagina");
-//     $sentencia->execute();
-//     return $sentencia->fetchAll();  
-// }
+function eliminar_publicacion($id_pub, $conexion){
+    $sentencia = $conexion->prepare("DELETE FROM publicaciones WHERE id_pub = :pub");
+    $sentencia->execute(array(':pub' => $id_pub)  );
+}
 
-// // OBTENER LAS PUBLICACIONES
-// function obtener_post_publicaciones($post_por_pagina, $conexion){
-//     $inicio = inicio($post_por_pagina);
-//     $sentencia = $conexion->prepare("SELECT SQL_CALC_FOUND_ROWS * FROM publicaciones LIMIT $inicio, $post_por_pagina");
-//     $sentencia->execute();
-//     return $sentencia->fetchAll();  
-// }
+function cambiar_estado_publicacion($id_pub, $conexion){
+    $sentencia = $conexion->prepare("SELECT * FROM publicaciones WHERE id_pub = :pub LIMIT 1");
+    $sentencia->execute(array(':pub' => $id_pub)  );
+    $resultado = $sentencia->fetch();
+    $estado = $resultado['estado'];
+    $nuevo_estado = ($estado == '0') ? '1' : '0';
+    $sentencia2 = $conexion->prepare("UPDATE publicaciones SET estado = $nuevo_estado WHERE id_pub= :pub");
+    $sentencia2->execute(array(':pub' => $resultado['id_pub']));
+}
 
-// // OBTENER EL ID Y TIPO DE PRODUCTO DE UNA PUBLICACION
-// function obtener_prod_ser($id_prod_ser, $conexion){
-//     $sentencia = $conexion->prepare("SELECT SQL_CALC_FOUND_ROWS * FROM productos_servicios WHERE id_prod_ser = $id_prod_ser LIMIT 1");
-//     $sentencia->execute();
-//     $sentencia = $sentencia->fetchAll();
-//     return $sentencia[0];
-// }
-// // OBTENER EL ID Y TIPO DE PRODUCTO DE UNA PUBLICACION (Segunda Forma)
-// function obtener_prod_ser_2($id_prod_ser, $conexion){
-//     $resultado = $conexion->query("SELECT * FROM productos_servicios WHERE id_prod_ser = $id_prod_ser LIMIT 1");
-//     $resultado = $resultado->fetchAll();
-//     return ($resultado[0]) ? $resultado[0] : false;
-// }
+function obtener_productos($conexion) {
+    $sentencia = $conexion->prepare("SELECT SQL_CALC_FOUND_ROWS * FROM productos_servicios WHERE tipo = 'p' ORDER BY nombre");
+    $sentencia->execute();
+    return $sentencia->fetchAll();  
+}
+function obtener_servicios($conexion) {
+    $sentencia = $conexion->prepare("SELECT SQL_CALC_FOUND_ROWS * FROM productos_servicios WHERE tipo = 's' ORDER BY nombre");
+    $sentencia->execute();
+    return $sentencia->fetchAll();  
+}
 
-// // OBTENER TIPO DE UN PROD_SER CON EL ID
-// function obtener_tipo_prod_ser($id,$conexion){
-//     $prod_ser = obtener_prod_ser($id, $conexion);
-//     $tipo = $prod_ser['tipo'];
-//     return $tipo;
-// }
+function eliminar_producto_servicio($id_prod_ser, $conexion){
+    $sentencia = $conexion->prepare("DELETE FROM productos_servicios WHERE id_prod_ser = :prod_ser");
+    $sentencia->execute(array(':prod_ser' => $id_prod_ser));
+}
 
-// // OBTENER UN NUMERO ID Y LIMPIAR DE iNYECCION DE CODIGO
-// function id_int_prod_ser($id){
-//     return (int)limpiarDatos($id);
-// }
-
-// // OBTENER NUMERO DE PAGINAS
-// function numero_paginas($post_por_pagina, $conexion){
-// 	//4.- Calculamos el numero de filas / articulos que nos devuelve nuestra consulta
-// 	$total_post = $conexion->prepare('SELECT count(*) AS total FROM `publicaciones`');
-// 	$total_post->execute();
-// 	$total_post = $total_post->fetch()['total'];
-
-// 	//5. Calculamos el numero de paginas que habra en la paginacion
-// 	$numero_paginas = ceil($total_post / $post_por_pagina);
-// 	return $numero_paginas;
+// function cambiar_estado_producto_servicio($id_prod_ser, $conexion){
+//     $sentencia = $conexion->prepare("SELECT * FROM productos_servicios WHERE id_prod_ser = :prod_ser LIMIT 1");
+//     $sentencia->execute(array(':prod_ser' => $id_prod_ser));
+//     $resultado = $sentencia->fetch();
+//     $estado = $resultado['estado'];
+//     $nuevo_estado = ($estado == '0') ? '1' : '0';
+//     $sentencia2 = $conexion->prepare("UPDATE productos_servicios SET estado = $nuevo_estado WHERE id_prod_ser= :prod_ser");
+//     $sentencia2->execute(array(':prod_ser' => $resultado['id_prod_ser']));
 // }
 
 

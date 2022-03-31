@@ -14,6 +14,16 @@ if (!$conexion) {    header('Location: error.php');}
 // EL USUARIO ESTA HABILITADO Y ES ADMIN?
 verificar_usuario_admin($conexion);
 
+// ACTUALIZACIONES DE LAS PUBLICACIONES
+if (isset($_POST['estado'])){
+    cambiar_estado_publicacion($_POST['id_pub'], $conexion);
+}elseif (isset($_POST['eliminar'])) {
+    eliminar_publicacion($_POST['id_pub'], $conexion);
+}
+
+// OBTENER LISTADO DE LOS Negocios 
+$posts = obtener_publicaciones($conexion);
+// print_r($publicaciones);
 
 
 // DAR TITULO A LA PAGINA 
